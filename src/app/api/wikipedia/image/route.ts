@@ -86,9 +86,14 @@ export async function GET(request: NextRequest) {
     const results = await Promise.all(names.map(fetchWikipediaImage));
     const imageUrl = results.find((url) => url !== null) || null;
 
+    // Cache successful responses for 24h, but don't cache failures as long
+    const cacheControl = imageUrl
+      ? "public, max-age=86400, s-maxage=86400"
+      : "public, max-age=300, s-maxage=300"; // 5 min for failures
+
     return NextResponse.json(
       { imageUrl },
-      { headers: { "Cache-Control": "public, max-age=86400, s-maxage=86400" } }
+      { headers: { "Cache-Control": cacheControl } }
     );
   } catch (error) {
     console.error("Wikipedia image fetch error:", error);
