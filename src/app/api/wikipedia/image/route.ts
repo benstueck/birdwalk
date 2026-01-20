@@ -54,7 +54,7 @@ async function fetchWikipediaImage(name: string): Promise<string | null> {
   const cached = getCached(wikiName);
   if (cached !== undefined) return cached;
 
-  const url = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(wikiName)}&prop=pageimages&format=json&piprop=thumbnail&pithumbsize=400`;
+  const url = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(wikiName)}&prop=pageimages&format=json&piprop=thumbnail&pithumbsize=400&redirects=1`;
 
   try {
     const response = await fetch(url);

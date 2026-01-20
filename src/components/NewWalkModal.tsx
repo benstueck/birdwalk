@@ -19,6 +19,14 @@ export function NewWalkModal({ onClose }: NewWalkModalProps) {
   const [error, setError] = useState("");
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

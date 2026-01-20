@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { BirdImage } from "@/components/BirdImage";
 import type { Lifer } from "@/types/database";
@@ -10,6 +11,13 @@ interface LiferModalProps {
 }
 
 export function LiferModal({ lifer, onClose }: LiferModalProps) {
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString("en-US", {
@@ -25,7 +33,7 @@ export function LiferModal({ lifer, onClose }: LiferModalProps) {
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-t-2xl w-full max-w-lg animate-slide-up h-[90vh] flex flex-col overflow-hidden">
+      <div className="relative bg-white rounded-t-2xl w-full max-w-lg animate-slide-up max-h-[85vh] flex flex-col overflow-hidden">
         {/* Hero Image */}
         <div className="relative flex-shrink-0">
           <BirdImage

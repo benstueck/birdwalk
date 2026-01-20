@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
@@ -22,6 +22,14 @@ export function SightingModal({ sighting, walkId, onClose }: SightingModalProps)
   const router = useRouter();
   const [view, setView] = useState<ModalView>("details");
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   // Edit form state
   const [editSpecies, setEditSpecies] = useState<EBirdSpecies | null>({
