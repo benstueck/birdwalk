@@ -24,7 +24,7 @@ export function SightingModal({ sighting, walkId, onClose }: SightingModalProps)
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Edit form state
-  const [editSpecies, setEditSpecies] = useState<EBirdSpecies>({
+  const [editSpecies, setEditSpecies] = useState<EBirdSpecies | null>({
     speciesCode: sighting.species_code,
     comName: sighting.species_name,
     sciName: sighting.scientific_name || "",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -27,7 +27,7 @@ interface SightingWithWalk {
   walks: { id: string; name: string };
 }
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get("q") || "";
 
@@ -123,7 +123,7 @@ export default function SearchPage() {
   }, [initialQuery]);
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-24">
+    <>
       {/* Header with Search Input */}
       <div className="sticky top-0 bg-white border-b border-slate-200 px-4 py-4 z-10">
         <div className="max-w-lg mx-auto flex items-center gap-3">
@@ -248,7 +248,20 @@ export default function SearchPage() {
           </div>
         )}
       </main>
+    </>
+  );
+}
 
+export default function SearchPage() {
+  return (
+    <div className="min-h-screen bg-slate-50 pb-24">
+      <Suspense fallback={
+        <div className="text-center py-8">
+          <div className="animate-spin h-6 w-6 border-2 border-slate-300 border-t-slate-600 rounded-full mx-auto" />
+        </div>
+      }>
+        <SearchContent />
+      </Suspense>
       <BottomNav />
     </div>
   );

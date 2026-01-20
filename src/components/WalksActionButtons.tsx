@@ -65,13 +65,13 @@ export function WalksActionButtons() {
       const { data: sightings } = await supabase
         .from("sightings")
         .select("species_name, species_code")
-        .ilike("species_name", `%${searchQuery}%`);
+        .ilike("species_name", `%${searchQuery}%`) as { data: { species_name: string; species_code: string }[] | null };
 
       // Search walks
       const { data: walks } = await supabase
         .from("walks")
         .select("id, name")
-        .ilike("name", `%${searchQuery}%`);
+        .ilike("name", `%${searchQuery}%`) as { data: { id: string; name: string }[] | null };
 
       const combined: SearchResult[] = [];
 
