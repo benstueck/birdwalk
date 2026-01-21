@@ -17,7 +17,7 @@ export function SortButton({ currentSort }: SortButtonProps) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="relative p-2 text-slate-400 hover:text-slate-600"
+        className="relative p-2 text-slate-400 hover:text-slate-600 cursor-pointer"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />

@@ -12,11 +12,11 @@ export function AddSightingButton({ walkId }: AddSightingButtonProps) {
 
   return (
     <>
-      <div className="fixed bottom-20 left-0 right-0 px-4 pb-2">
+      <div className="fixed bottom-20 left-0 right-0 px-4 pb-2 z-20 pointer-events-none">
         <div className="max-w-lg mx-auto flex justify-end">
           <button
             onClick={() => setShowModal(true)}
-            className="flex items-center justify-center w-12 h-12 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors"
+            className="flex items-center justify-center w-12 h-12 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors cursor-pointer pointer-events-auto"
           >
             <svg
               className="w-6 h-6"

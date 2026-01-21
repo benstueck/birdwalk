@@ -169,7 +169,7 @@ export function WalksActionButtons() {
                   <button
                     key={result.type === "walk" ? `walk-${result.id}` : `species-${result.species_code}`}
                     type="button"
-                    className="w-full px-4 py-3 text-left hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0 flex items-center gap-3"
+                    className="w-full px-4 py-3 text-left hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0 flex items-center gap-3 cursor-pointer"
                     onClick={() => handleSelect(result)}
                   >
                     {result.type === "walk" ? (
@@ -192,7 +192,7 @@ export function WalksActionButtons() {
           {/* Add button */}
           <button
             onClick={() => setShowModal(true)}
-            className="flex items-center justify-center w-12 h-12 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors flex-shrink-0"
+            className="flex items-center justify-center w-12 h-12 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors flex-shrink-0 cursor-pointer"
           >
             <svg
               className="w-6 h-6"
